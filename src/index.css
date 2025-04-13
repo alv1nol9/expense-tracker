@@ -1,0 +1,14 @@
+*{
+  background-color: #242424;
+}
+#header-container{
+  display: flex;
+  color: cyan;
+  justify-content: center;
+}
+#des{
+  display: flex;
+ justify-content: center;
+ align-items: center;
+ color: aqua;
+}

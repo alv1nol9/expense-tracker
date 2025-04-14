@@ -3,7 +3,9 @@ import AddExpense from './AddExpense'
 
 const DisplayExpense = () => {
 
-    const [items, setItems] = useState(["Expense","Description","Price"])
+    function AddNewExpense(newExpense){
+        const [items, setItems]= useState([{expense:"Expense",description:"Description",price:"Price"}])
+    }
 
   return (
     <div>
@@ -11,14 +13,23 @@ const DisplayExpense = () => {
        <table>
         <thead>
             <tr>
-                {items.map((item, index)=>
-                <th key={index}>{item}</th> )}
+                <th>Expense</th>
+                <th>Descripton</th>
+                <th>Price</th>
             </tr>
         </thead>
         <tbody>
-            {/*map expenses here*/}
+            {items.map((item, index)=>
+             <tr key={index}>
+          <td>{item.expense}</td>
+          <td>{item.description}</td>
+          <td>{item.price}</td>
+             </tr>
+            
+            )}
         </tbody>
        </table>
+       <AddExpense onAddExpense={addNewExpense} />
     </div>
   )
 }

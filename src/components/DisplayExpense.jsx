@@ -1,35 +1,76 @@
 import React, { useState } from 'react'
-import AddExpense from './AddExpense'
+import { expenses } from '../data/expenses'
 
 const DisplayExpense = () => {
+  const [items, setItems] = useState(expenses)
+  const [description, setDescription] = useState("")
+  const [title, setTitle] = useState("")
+  const [price, setPrice] = useState("")
 
-    function AddNewExpense(newExpense){
-        const [items, setItems]= useState([{expense:"Expense",description:"Description",price:"Price"}])
+  const addExpenses = (e) => {
+    e.preventDefault()
+
+    const newExpense = {
+      title,
+      description,
+      price
     }
+
+    setItems([...items, newExpense])
+
+    setTitle("")
+    setDescription("")
+    setPrice("")
+  }
 
   return (
     <div>
-        <h2>Your expenses</h2>
-       <table>
+      <table className="table">
         <thead>
-            <tr>
-                <th>Expense</th>
-                <th>Descripton</th>
-                <th>Price</th>
-            </tr>
+          <tr>
+            <th>Expense</th>
+            <th>Description</th>
+            <th>Price</th>
+          </tr>
         </thead>
         <tbody>
-            {items.map((item, index)=>
-             <tr key={index}>
-          <td>{item.expense}</td>
-          <td>{item.description}</td>
-          <td>{item.price}</td>
-             </tr>
-            
-            )}
+          {items.map((item, index) => (
+            <tr key={index}>
+              <td>{item.title}</td>
+              <td>{item.description}</td>
+              <td>{item.price}</td>
+            </tr>
+          ))}
         </tbody>
-       </table>
-       <AddExpense onAddExpense={addNewExpense} />
+      </table>
+
+      <form className="form" onSubmit={addExpenses}>
+        <input
+          id="title"
+          type="text"
+          placeholder="Expense"
+          value={title}
+          onChange={e => setTitle(e.target.value)}
+          required
+        />
+        <input
+          id="description"
+          type="text"
+          placeholder="Description"
+          value={description}
+          onChange={e => setDescription(e.target.value)}
+          required
+        />
+        <input
+          id="price"
+          type="number"
+          placeholder="Price"
+          value={price}
+          onChange={e => setPrice(e.target.value)}
+          required
+        />
+        <button type="submit">Add Expense</button>
+      </form>
     </div>
   )
 }

@@ -1,17 +1,14 @@
 import React from 'react'
-import Header from './components/Header'
 import DisplayExpense from './components/DisplayExpense'
-import AddExpense from './components/AddExpense'
+import Header from './components/Header'
 
 
 const App = () => {
   return (
-    <>
+   <div>
     <Header />
-    <AddExpense />
-    <DisplayExpense />
-    </>
-)
-}
+   <DisplayExpense />
+   </div>
+)}
 
-export default App
+export default App 
